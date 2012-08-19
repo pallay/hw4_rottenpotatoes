@@ -1,9 +1,7 @@
 class MoviesController < ApplicationController
 
   def show
-    id = params[:id] # retrieve movie ID from URI route
-    @movie = Movie.find(id) # look up movie by unique ID
-    # will render app/views/movies/show.<extension> by default
+    @movie = Movie.find(params[:id])
   end
 
   def index
@@ -33,7 +31,6 @@ class MoviesController < ApplicationController
   end
 
   def new
-    # default: render 'new' template
   end
 
   def create
@@ -58,6 +55,15 @@ class MoviesController < ApplicationController
     @movie.destroy
     flash[:notice] = "Movie '#{@movie.title}' deleted."
     redirect_to movies_path
+  end
+  
+  def search
+    @movie = Movie.find(params[:id])
+    if @movie.present? && @movie.director.present?
+      @movies = Movie.where(director:@movie.director)
+    else
+      redirect_to movies_path, flash: {notice:"'#{@movie.title}' has no director info"}
+    end
   end
 
 end

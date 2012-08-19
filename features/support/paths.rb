@@ -15,6 +15,16 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
+    when /^the edit page for "(.*)"$/i
+      # edit_movie_path(id:Movie.where(title:$1).limit(1).first)
+      movie = Movie.where(title:$1).limit(1).first
+      edit_movie_path movie
+    when /^the details page for "(.*)"$/i
+      movie = Movie.where(title:$1).limit(1).first
+      movie_path movie
+    when /^the Similar Movies page for "(.*)"$/i
+      movie = Movie.where(title:$1).limit(1).first
+      search_movie_path movie
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
