@@ -25,6 +25,8 @@ module NavigationHelpers
     when /^the Similar Movies page for "(.*)"$/i
       movie = Movie.where(title:$1).limit(1).first
       search_movie_path movie
+    when /^the RottenPotatoes home page$/
+      root_path
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
