@@ -1,6 +1,9 @@
 require "spec_helper"
 
 describe MoviesHelper do
+  
+  helper MoviesHelper
+  
   describe "oddness" do
     context "for odd count" do
       before do

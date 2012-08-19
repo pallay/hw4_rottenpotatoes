@@ -106,4 +106,11 @@ describe MoviesController do
     end
   end
 
+  describe "edit" do
+    it "should find the movie" do
+      get :edit, id:Movie.first
+      assigns(:movie).should_not be_nil
+    end
+  end
+  
 end
