@@ -62,7 +62,7 @@ class MoviesController < ApplicationController
     if @movie.present? && @movie.director.present?
       @movies = Movie.where(director:@movie.director)
     else
-      redirect_to root_path, flash: {notice:"'#{@movie.title}' has no director info"}
+      redirect_to movies_path, flash: {notice:"'#{@movie.title}' has no director info"}
     end
   end
 

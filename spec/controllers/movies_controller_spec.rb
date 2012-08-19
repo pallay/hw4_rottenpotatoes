@@ -87,7 +87,7 @@ describe MoviesController do
     end
     it "should redirect and flash" do
       get :search, id:Movie.where(title:'Alien').limit(1).first
-      page.should redirect_to root_path
+      page.should redirect_to movies_path
       flash[:notice].should_not be_nil
     end
   end
