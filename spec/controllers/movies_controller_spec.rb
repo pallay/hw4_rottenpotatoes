@@ -79,20 +79,6 @@ describe MoviesController do
       flash[:notice].should_not be_nil
     end
   end
-  
-  describe "destroy" do
-    it "should decrease the count by 1" do
-      before_count = Movie.count
-      delete :destroy, id:Movie.first
-      after_count = Movie.count
-      after_count.should_not == before_count
-    end
-    it "should redirect and flash" do
-      delete :destroy, id:Movie.first
-      page.should redirect_to movies_path
-      flash[:notice].should_not be_nil
-    end
-  end
 
   describe "search" do
     it "should find the movie" do
@@ -101,7 +87,7 @@ describe MoviesController do
     end
     it "should redirect and flash" do
       get :search, id:Movie.where(title:'Alien').limit(1).first
-      page.should redirect_to movies_path
+      page.should redirect_to root_path
       flash[:notice].should_not be_nil
     end
   end
